@@ -4,8 +4,7 @@ from .forms import LoginForm
 
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect('/admin')  # go to hw_list if already logged in
-
+        return redirect('home')  
     form = LoginForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         username = form.cleaned_data['username']
@@ -13,7 +12,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/admin')  # redirect to the hw_list after login
+            return redirect('home')  
         else:
             form.add_error(None, "Invalid username or password")
 
