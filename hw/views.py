@@ -1,46 +1,47 @@
 from django.shortcuts import render, redirect
-from .models import Homework, Submission, Comment, Profile
-from .forms import  HomeworkForm, SubmissionForm, CommentForm, ProfileForm
-# Create your views here.
+from .models import Homework
+from .forms import HomeworkForm
 
+
+#HOMEWORK SECTION 
+
+# List all homework
 def home(request):
     data = Homework.objects.all()
     context = {
-        "form":data
+        "form": data
     }
     return render(request, "home.html", context)
 
-#for homework
 
+# Create new homework
 def create_homework(request):
-    if request.method == 'POST':
-        form = HomeworkForm(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-        else:
-            form =  HomeworkForm()
-            return render(request, "create_homework.html", {"form":form})
-        
-#edit for homework
-
-def edit_homework(request, id):
-    homeworks= Homework.objects.get(id=id)
-    form = HomeworkForm(request.POST,instance=id)
     if request.method == 'POST':
         form = HomeworkForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
-        else:
-            form = HomeworkForm()
-            return render(request, "edit_homework.html", {"form":form})
+    else:
+        form = HomeworkForm()
+    return render(request, "create_homework.html", {"form": form})
 
 
-#homework delete
+# Edit existing homework
+def edit_homework(request, id):
+    homework = Homework.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = HomeworkForm(request.POST, instance=homework)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = HomeworkForm(instance=homework)
+    return render(request, "edit_homework.html", {"form": form})
+
+
+# Delete homework
 def hw_delete(request, id):
-    homeworks = Homework.objects.get(id=id)
-    homeworks.delete(request.POST)
-    return redirect(home)
-
-
+    homework = Homework.objects.get(id=id)
+    homework.delete()
+    return redirect('home')
