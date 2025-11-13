@@ -13,10 +13,54 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
       <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">HomeworkShare</a>
-        <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'create_homework' %}"
-            >Create Homework</a
-          >
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <!-- Homework Section -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Homeworks</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create_homework' %}">
+                Create Homework
+              </a>
+            </li>
+
+            <!-- Profile Section -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="profileDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Profiles
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                <li>
+                  <a class="dropdown-item" href="{% url 'profile_list' %}">
+                    View Profiles
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'profile_create' %}">
+                    Create Profile
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -24,7 +68,7 @@
     <div class="container">
       {% if messages %} {% for message in messages %}
       <div class="alert alert-info">{{ message }}</div>
-      {% endfor %} {% endif %} {% block content %} {% endblock %}
+      {% endfor %} {% endif %} {% block content %}{% endblock %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
