@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
-from .models import Homework, Subject,Profile
-from .forms import HomeworkForm,ProfileForm
+from .models import Homework, Profile, Comment
+from .forms import HomeworkForm, ProfileForm, CommentForm
 
 
-#HOMEWORK SECTION 
+# HOMEWORK SECTION
 
-# List all homework
 def home(request):
     data = Homework.objects.all()
     context = {
@@ -14,7 +13,6 @@ def home(request):
     return render(request, "home.html", context)
 
 
-# Create new homework
 def create_homework(request):
     if request.method == 'POST':
         form = HomeworkForm(request.POST)
@@ -26,7 +24,6 @@ def create_homework(request):
     return render(request, "create_homework.html", {"form": form})
 
 
-# Edit existing homework
 def edit_homework(request, id):
     homework = Homework.objects.get(id=id)
 
@@ -37,10 +34,10 @@ def edit_homework(request, id):
             return redirect('home')
     else:
         form = HomeworkForm(instance=homework)
+
     return render(request, "edit_homework.html", {"form": form})
 
 
-# Delete homework
 def hw_delete(request, id):
     homework = Homework.objects.get(id=id)
     homework.delete()
@@ -48,10 +45,8 @@ def hw_delete(request, id):
 
 
 
+# PROFILE SECTION
 
-
-
-#for the profile now 
 def profile_list(request):
     profiles = Profile.objects.all()
     context = {
@@ -59,7 +54,7 @@ def profile_list(request):
     }
     return render(request, "profile_list.html", context)
 
-#for creating the profile
+
 def profile_create(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
@@ -68,24 +63,68 @@ def profile_create(request):
             return redirect('home')
     else:
         form = ProfileForm()
+
     return render(request, "profile_create.html", {"form": form})
 
 
-#FOR editing the profile
 def profile_edit(request, id):
     profile = Profile.objects.get(id=id)
+
     if request.method == 'POST':
-        form = ProfileForm(request.POST,  instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('profile_list')
     else:
         form = ProfileForm(instance=profile)
+
     return render(request, "profile_edit.html", {"form": form})
 
 
-#for delete the profile
 def profile_delete(request, id):
     profile = Profile.objects.get(id=id)
     profile.delete()
+    return redirect('home')
+
+
+
+# COMMENT SECTION
+
+def comment_list(request):
+    comments = Comment.objects.all()
+    context = {
+        "comment": comments
+    }
+    return render(request, "comment_list.html", context)
+
+
+def create_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = CommentForm()
+
+    return render(request, "create_comment.html", {"form": form})
+
+
+def edit_comment(request, id):
+    comment = Comment.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = CommentForm(instance=comment)
+
+    return render(request, "edit_comment.html", {"form": form})
+
+
+def comment_delete(request, id):
+    comment = Comment.objects.get(id=id)
+    comment.delete()
     return redirect('home')
