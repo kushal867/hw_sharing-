@@ -19,6 +19,16 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # User browser routes
     path("", include("user.urls")),
+
+    # Homework browser routes
     path("hw/", include("hw.urls")),
+
+    # Homework API routes (ALL API endpoints start with /api/)
+    path("api/", include("hw.api_urls")),
+
+    # DRF login/logout (browseable API)
+    path('api-auth/', include('rest_framework.urls')),
 ]
