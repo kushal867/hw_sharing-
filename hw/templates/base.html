@@ -1,26 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      {% block title %}HomeworkShare • Share. Learn. Win.{% endblock %}
-    </title>
+    <title>{% block title %}HomeworkShare{% endblock %}</title>
 
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      href="https://cdn-icons-png.flaticon.com/512/3069/3069182.png"
-    />
-
-    <!-- Fonts: Satoshi (premium free font) -->
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Bootstrap 5.3 + Icons -->
+    <!-- Bootstrap 5 + Icons -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -30,148 +16,46 @@
       rel="stylesheet"
     />
 
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
     <style>
       :root {
         --primary: #6366f1;
-        --primary-dark: #4f46e5;
         --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        --radius: 1rem;
-        --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
       body {
-        font-family: "Satoshi", system-ui, sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f8fafc;
-        background-image: radial-gradient(
-            circle at 10% 20%,
-            rgba(99, 102, 241, 0.08) 0%,
-            transparent 20%
-          ),
-          radial-gradient(
-            circle at 90% 80%,
-            rgba(118, 75, 162, 0.08) 0%,
-            transparent 20%
-          );
         min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
-
-      /* Navbar - Glass Effect */
       .navbar {
-        backdrop-filter: blur(20px);
-        background: rgba(255, 255, 255, 0.88);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        padding: 1.2rem 0;
-        transition: var(--transition);
+        background: white;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       }
-
-      .navbar.scrolled {
-        padding: 0.8rem 0;
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
       .navbar-brand {
-        font-weight: 900;
-        font-size: 1.9rem;
+        font-weight: 800;
+        font-size: 1.8rem;
         background: var(--gradient);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        letter-spacing: -1px;
       }
-
-      .nav-link {
-        font-weight: 600;
-        color: #374151 !important;
-        padding: 0.6rem 1.3rem !important;
-        border-radius: 50px;
-        transition: var(--transition);
-      }
-
-      .nav-link:hover,
-      .nav-link.active {
-        background: rgba(99, 102, 241, 0.15);
-        color: var(--primary) !important;
-      }
-
-      /* Hero Section */
       .hero {
         background: var(--gradient);
         color: white;
-        padding: 160px 0 120px;
-        position: relative;
-        overflow: hidden;
+        padding: 120px 0 80px;
+        text-align: center;
       }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070")
-          center/cover;
-        opacity: 0.15;
-      }
-
       .hero h1 {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
         font-weight: 900;
-        line-height: 1.1;
-        letter-spacing: -2.5px;
       }
-
-      .hero p.lead {
-        font-size: 1.4rem;
-        font-weight: 400;
-        opacity: 0.95;
-        max-width: 650px;
-        margin: 0 auto;
-      }
-
-      /* Cards */
-      .card {
-        border: none;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        transition: var(--transition);
-      }
-
-      .card:hover {
-        transform: translateY(-12px);
-        box-shadow: 0 25px 50px rgba(99, 102, 241, 0.22);
-      }
-
-      /* Buttons */
-      .btn-gradient {
-        background: var(--gradient);
-        color: white;
-        border: none;
-        padding: 1rem 2.5rem;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 1.1rem;
-        box-shadow: 0 10px 30px rgba(102, 84, 241, 0.35);
-        transition: var(--transition);
-      }
-
-      .btn-gradient:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(102, 84, 241, 0.45);
-        color: white;
-      }
-
-      /* Floating Action Button */
       .fab {
         position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 66px;
-        height: 66px;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
         background: var(--gradient);
         color: white;
         border-radius: 50%;
@@ -179,76 +63,44 @@
         align-items: center;
         justify-content: center;
         font-size: 2rem;
-        box-shadow: 0 15px 35px rgba(102, 84, 241, 0.4);
-        z-index: 1050;
-        transition: var(--transition);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
       }
-
-      .fab:hover {
-        transform: scale(1.15) rotate(90deg);
-      }
-
-      /* Footer */
       footer {
-        background: #0f172a;
-        color: #94a3b8;
-        padding: 5rem 0 2rem;
+        background: #111;
+        color: #aaa;
+        padding: 3rem 0 1.5rem;
         margin-top: auto;
       }
-
-      footer a {
-        color: #e2e8f0;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s;
+      .card {
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
       }
-
-      footer a:hover {
-        color: white;
-      }
-
-      /* Curved divider */
-      .curve {
-        position: relative;
-        height: 100px;
-        background: white;
-      }
-
-      .curve svg {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 100px;
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
       }
     </style>
-
-    {% block extra_head %}{% endblock %}
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg sticky-top">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home' %}">
-          <i class="bi bi-book-half me-2"></i>HomeworkShare
-        </a>
-
+        <a class="navbar-brand" href="{% url 'home' %}"> HomeworkShare </a>
         <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#mainNav"
+          data-bs-target="#nav"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto align-items-center">
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a
-                class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
-                href="{% url 'home' %}"
-                >Homeworks</a
-              >
+              <a class="nav-link" href="{% url 'home' %}">Homeworks</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'create_homework' %}">Upload</a>
@@ -260,25 +112,18 @@
                 data-bs-toggle="dropdown"
                 >Profiles</a
               >
-              <ul
-                class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4"
-              >
+              <ul class="dropdown-menu">
                 <li>
-                  <a class="dropdown-item py-3" href="{% url 'profile_list' %}"
-                    >View All Profiles</a
+                  <a class="dropdown-item" href="{% url 'profile_list' %}"
+                    >All Profiles</a
                   >
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item py-3"
-                    href="{% url 'profile_create' %}"
+                  <a class="dropdown-item" href="{% url 'profile_create' %}"
                     >Create Profile</a
                   >
                 </li>
               </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
             </li>
           </ul>
         </div>
@@ -286,111 +131,56 @@
     </nav>
 
     <!-- Hero (only on home page) -->
-    {% block hero %} {% if request.resolver_match.url_name == 'home' or
-    request.resolver_match.url_name == 'hw_list' %}
-    <section class="hero text-center position-relative">
-      <div class="container position-relative z-2">
-        <div data-aos="fade-up">
-          <h1 class="mb-4">Never Study Alone Again</h1>
-          <p class="lead mb-5">
-            Join thousands of students sharing homework, notes, and solutions
-            instantly.
-          </p>
-          <a href="{% url 'create_homework' %}" class="btn btn-gradient btn-lg">
-            <i class="bi bi-cloud-arrow-up me-2"></i> Share Your Homework Now
-          </a>
-        </div>
+    {% if request.resolver_match.url_name == 'home' %}
+    <div class="hero">
+      <div class="container">
+        <h1>Never Study Alone</h1>
+        <p class="lead mt-3">Share homework, notes & solutions instantly</p>
+        <a href="{% url 'create_homework' %}" class="btn btn-light btn-lg mt-4">
+          Upload Now
+        </a>
       </div>
+    </div>
+    {% endif %}
 
-      <!-- Curved bottom -->
-      <div class="curve">
-        <svg viewBox="0 0 1440 120" fill="none">
-          <path
-            d="M0,0 C360,120 1080,120 1440,0 L1440,120 L0,120 Z"
-            fill="white"
-          />
-        </svg>
+    <!-- Messages - FIXED ORDER: endfor BEFORE endif -->
+    <div class="container mt-4">
+      {% if messages %} {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+        ></button>
       </div>
-    </section>
-    {% endif %} {% endblock %}
-
-    <!-- Messages (NO PARTIALS → NO ERRORS!) -->
-    <div class="container my-5">
-      {% if messages %}
-      <div class="row g-4">
-        {% for message in messages %}
-        <div
-          class="col-12 col-lg-8 mx-auto"
-          data-aos="fade-up"
-          data-aos-delay="{{ forloop.counter0|mul:100 }}"
-        >
-          <div
-            class="alert {% if message.tags == 'success' %}alert-success bg-success text-white border-0 {% elif message.tags == 'error' %}alert-danger bg-danger text-white border-0 {% elif message.tags == 'warning' %}alert-warning {% else %}alert-info bg-info text-white border-0{% endif %} rounded-4 shadow-lg d-flex align-items-center py-4 px-4"
-          >
-            {% if message.tags == 'success' %}<i
-              class="bi bi-check-circle-fill fs-3 me-3"
-            ></i>
-            {% elif message.tags == 'error' %}<i
-              class="bi bi-x-octagon-fill fs-3 me-3"
-            ></i>
-            {% elif message.tags == 'warning' %}<i
-              class="bi bi-exclamation-triangle-fill fs-3 me-3"
-            ></i>
-            {% else %}<i class="bi bi-info-circle-fill fs-3 me-3"></i>{% endif
-            %}
-            <div class="flex-grow-1 fw-medium">{{ message }}</div>
-            <button
-              type="button"
-              class="btn-close btn-close-white ms-4"
-              data-bs-dismiss="alert"
-            ></button>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
+      {% endfor %}
+      <!-- THIS WAS MISSING BEFORE -->
       {% endif %}
     </div>
 
     <!-- Main Content -->
-    <main class="flex-grow-1">
-      <div class="container pb-5">{% block content %} {% endblock %}</div>
-    </main>
+    <div class="container my-5 flex-grow-1">
+      {% block content %} {% endblock %}
+    </div>
 
-    <!-- Floating Action Button -->
-    <a href="{% url 'create_homework' %}" class="fab shadow-2xl">
-      <i class="bi bi-plus-lg"></i>
-    </a>
+    <!-- Floating Button -->
+    <a href="{% url 'create_homework' %}" class="fab"> + </a>
 
     <!-- Footer -->
-    <footer class="text-center text-white">
+    <footer class="text-center">
       <div class="container">
-        <h3 class="h4 mb-3">HomeworkShare</h3>
-        <p class="mb-4 opacity-90">The smartest way to study in 2025</p>
-        <p class="small opacity-75">
-          <a href="#">Privacy</a> • <a href="#">Terms</a> •
-          <a href="#">Contact</a>
-        </p>
-        <p class="mt-4 small opacity-60">
-          © {{ now|date:"Y" }} • Made with
-          <i class="bi bi-heart-fill text-danger"></i> for students everywhere
+        <p>
+          © {{ now|date:"Y" }} <strong>HomeworkShare</strong> • Made for
+          students
         </p>
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({ once: true, duration: 900 });
-
-      // Navbar scroll effect
-      window.addEventListener("scroll", () => {
-        document
-          .querySelector(".navbar")
-          .classList.toggle("scrolled", window.scrollY > 60);
-      });
-    </script>
-
-    {% block extra_js %}{% endblock %}
   </body>
 </html>
