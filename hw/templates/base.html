@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}HomeworkShare{% endblock %}</title>
 
-    <!-- Bootstrap 5 & Icons -->
+    <!-- Bootstrap 5 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,121 +16,173 @@
       rel="stylesheet"
     />
 
+    <!-- GOOGLE FONT -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       :root {
         --primary: #6366f1;
         --primary-dark: #4f46e5;
+        --surface: #ffffff;
         --gradient: linear-gradient(135deg, #6366f1, #764ba2);
-        --radius: 1.1rem;
+        --radius: 1.2rem;
+        --transition: 0.25s ease;
       }
 
+      /* GLOBAL */
       body {
-        font-family: "Inter", system-ui, sans-serif;
-        background: #f3f4f6;
-        color: #333;
+        font-family: "Inter", sans-serif;
+        background: #f4f5fa;
+        color: #2e2e2e;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
 
-      /* ========== NAVBAR ========== */
+      /* ==========================
+         NAVBAR / HEADER
+      ========================== */
       .navbar {
         background: rgba(255, 255, 255, 0.75);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1rem 0;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05);
       }
 
       .navbar-brand {
-        font-size: 1.9rem;
-        font-weight: 800;
+        font-weight: 900;
+        font-size: 2rem;
+        letter-spacing: -1px;
         background: var(--gradient);
-        -webkit-background-clip: text;
+        background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
       .nav-link {
         font-weight: 600;
-        transition: 0.25s;
-      }
-      .nav-link:hover {
-        color: var(--primary-dark) !important;
-        transform: translateY(-1px);
+        padding: 0.6rem 1.1rem !important;
+        border-radius: 10px;
+        transition: var(--transition);
       }
 
-      /* ========== HERO ========== */
+      .nav-link:hover {
+        background: rgba(99, 102, 241, 0.12);
+        color: var(--primary-dark) !important;
+      }
+
+      .dropdown-menu {
+        border-radius: var(--radius);
+        padding: 0.8rem;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+
+      /* ==========================
+         HERO SECTION
+      ========================== */
       .hero {
         background: var(--gradient);
+        padding: 150px 0 110px;
         color: white;
         text-align: center;
-        padding: 140px 0 110px;
-        border-bottom-left-radius: 50px;
-        border-bottom-right-radius: 50px;
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        border-bottom-left-radius: 60px;
+        border-bottom-right-radius: 60px;
+        box-shadow: 0px 25px 80px rgba(0, 0, 0, 0.2);
+        animation: heroFade 0.6s ease-out;
       }
+
+      @keyframes heroFade {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       .hero h1 {
+        font-size: 4rem;
         font-weight: 900;
-        font-size: 3.8rem;
         letter-spacing: -1px;
       }
 
       .hero p {
-        opacity: 0.9;
         font-size: 1.25rem;
+        opacity: 0.95;
       }
 
-      .hero .btn {
-        padding: 12px 28px;
-        font-size: 1.05rem;
+      .hero-btn {
         border-radius: var(--radius);
-        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
-        transition: 0.3s;
-      }
-      .hero .btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 14px 35px rgba(255, 255, 255, 0.35);
+        padding: 14px 34px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.25);
       }
 
-      /* ========== CARDS ========== */
+      .hero-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 35px rgba(255, 255, 255, 0.35);
+      }
+
+      /* ==========================
+         CARDS (Soft-UI Style)
+      ========================== */
       .card {
         border: none;
         border-radius: var(--radius);
-        background: white;
-        transition: 0.35s;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
-      }
-      .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
+        background: #ffffff;
+        box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.06),
+          -8px -8px 20px rgba(255, 255, 255, 0.8);
+        transition: 0.35s ease;
       }
 
-      /* ========== FLOATING BUTTON ========== */
+      .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.07),
+          -10px -10px 25px rgba(255, 255, 255, 0.9);
+      }
+
+      /* ==========================
+         FLOATING ACTION BUTTON
+      ========================== */
       .fab {
         position: fixed;
         bottom: 28px;
         right: 28px;
-        width: 64px;
-        height: 64px;
+        width: 70px;
+        height: 70px;
         background: var(--gradient);
         border-radius: 50%;
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 2.2rem;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-        transition: 0.3s;
-      }
-      .fab:hover {
-        transform: scale(1.12);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+        font-size: 2.4rem;
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
+        transition: 0.25s ease;
       }
 
-      /* ========== FOOTER ========== */
+      .fab:hover {
+        transform: scale(1.15) translateY(-4px);
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+      }
+
+      /* ==========================
+         FOOTER
+      ========================== */
       footer {
-        background: #111;
-        color: #bbb;
-        padding: 3rem 0 1.3rem;
+        background: #0e0e0e;
+        color: #d7d7d7;
+        padding: 3rem 0 2rem;
         margin-top: auto;
+        text-align: center;
       }
 
       footer p {
@@ -141,7 +193,7 @@
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">HomeworkShare</a>
 
@@ -159,9 +211,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'home' %}">Homeworks</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'create_homework' %}">Upload</a>
             </li>
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -169,7 +223,7 @@
                 data-bs-toggle="dropdown"
                 >Profiles</a
               >
-              <ul class="dropdown-menu rounded-4">
+              <ul class="dropdown-menu">
                 <li>
                   <a class="dropdown-item" href="{% url 'profile_list' %}"
                     >All Profiles</a
@@ -187,27 +241,27 @@
       </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- HERO -->
     {% if request.resolver_match.url_name == 'home' %}
-    <div class="hero">
+    <section class="hero">
       <div class="container">
         <h1>Never Study Alone</h1>
-        <p>Share homework, notes and solutions instantly.</p>
+        <p>Share homework, notes & solutions instantly.</p>
         <a
           href="{% url 'create_homework' %}"
-          class="btn btn-light btn-lg mt-4 shadow-sm"
+          class="btn btn-light hero-btn mt-4"
         >
-          <i class="bi bi-cloud-upload me-1"></i> Upload Now
+          <i class="bi bi-cloud-upload"></i> Upload Now
         </a>
       </div>
-    </div>
+    </section>
     {% endif %}
 
-    <!-- Messages -->
+    <!-- MESSAGES -->
     <div class="container mt-4">
       {% if messages %} {% for message in messages %}
       <div
-        class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-3 shadow-sm"
+        class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-4 shadow-sm"
         role="alert"
       >
         {{ message }}
@@ -220,24 +274,19 @@
       {% endfor %} {% endif %}
     </div>
 
-    <!-- Main Content -->
+    <!-- CONTENT -->
     <div class="container my-5 flex-grow-1">
       {% block content %}{% endblock %}
     </div>
 
-    <!-- Floating Add Button -->
-    <a href="{% url 'create_homework' %}" class="fab"
-      ><i class="bi bi-plus"></i
-    ></a>
+    <!-- FLOATING ADD BUTTON -->
+    <a href="{% url 'create_homework' %}" class="fab">
+      <i class="bi bi-plus"></i>
+    </a>
 
-    <!-- Footer -->
-    <footer class="text-center">
-      <div class="container">
-        <p>
-          © {{ now|date:"Y" }} <strong>HomeworkShare</strong> — Built for
-          students
-        </p>
-      </div>
+    <!-- FOOTER -->
+    <footer>
+      <p>© {{ now|date:"Y" }} HomeworkShare • Built for Students</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
