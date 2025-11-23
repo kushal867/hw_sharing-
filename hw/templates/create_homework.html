@@ -1,7 +1,13 @@
 {% extends 'base.html' %} {% block content %}
-<h2>Create Homework</h2>
-<form method="post" enctype="multipart/form-data" class="mt-3">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+<div class="container mt-4">
+  <h2 class="mb-3">Create Homework</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">{{ form.as_p }}</div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="{% url 'homework_list' %}" class="btn btn-secondary ms-2"
+      >Cancel</a
+    >
+  </form>
+</div>
 {% endblock %}
