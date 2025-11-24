@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from .models import Homework, Submission, Comment, Profile
 
 
-
-#   PROFILE FORM
-
+# PROFILE FORM
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -15,9 +13,7 @@ class ProfileForm(forms.ModelForm):
         }
 
 
-
-#   HOMEWORK CREATION FORM (for teachers)
-
+# HOMEWORK CREATION FORM (Teachers)
 class HomeworkForm(forms.ModelForm):
     class Meta:
         model = Homework
@@ -28,9 +24,7 @@ class HomeworkForm(forms.ModelForm):
         }
 
 
-
-# SUBMISSION FORM (for students)
-
+# SUBMISSION FORM (Students)
 class SubmissionForm(forms.ModelForm):
     class Meta:
         model = Submission
@@ -41,7 +35,6 @@ class SubmissionForm(forms.ModelForm):
 
 
 # COMMENT FORM
-
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
