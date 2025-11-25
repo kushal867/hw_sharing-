@@ -10,6 +10,9 @@ A Django-based web application for managing and sharing homework, submissions, a
 - **Submissions:** Students can submit homework and track approval status.
 - **Comments:** Users can comment on homework assignments for discussion.
 - **Responsive UI:** Clean, mobile-friendly interface using Bootstrap.
+- **Notifications:** Optional notifications for new assignments or comments.
+- **Search & Filter:** Easily find subjects, homework, or students.
+- **Admin Panel:** Manage users, subjects, and homework from Django admin.
 
 ## Installation
 
@@ -17,6 +20,10 @@ A Django-based web application for managing and sharing homework, submissions, a
 
 ```bash
 git clone https://github.com/yourusername/hw_sharing_platform.git
-cd hw_sharing_platform
+cd hw_sharing_platformpip install -r requirements.txt
 
+
+python -m venv venv
+source venv/bin/activate  # Linux / macOS
+venv\Scripts\activate     # Windows
 ```
